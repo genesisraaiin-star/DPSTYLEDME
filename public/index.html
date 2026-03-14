@@ -540,7 +540,7 @@ const cur = document.getElementById('cur');
 let mx=0,my=0,cx=0,cy=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 (function loop(){
-  cx+=(mx-cx)*0.12;cy+=(my-cy)*0.12;
+  cx+=(mx-cx)*0.35;cy+=(my-cy)*0.35;
   cur.style.left=cx+'px';cur.style.top=cy+'px';
   requestAnimationFrame(loop);
 })();
