@@ -189,25 +189,28 @@ h2{font-family:'Unbounded',sans-serif;font-size:clamp(36px,5vw,72px);font-weight
 .reviews-link:hover svg{transform:translateX(4px);}
 
 /* Loading / error states for reviews */
-.reviews-loading{text-align:center;padding:80px 0;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);}
+.reviews-loading{text-align:center;padding:40px 0;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);}
 .reviews-error{text-align:center;padding:60px 0;}
 .reviews-error p{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase;}
 
 /* ── BOOKING ── */
-.booking-section{background:var(--white);padding:140px 56px;border-top:1px solid var(--border);}
+.booking-section{background:var(--black);color:var(--white);padding:140px 56px;}
+.booking-section .section-label{color:rgba(255,255,255,.3);}
+.booking-section .section-label::before{background:rgba(255,255,255,.3);}
+.booking-section h2{color:var(--white);}
 .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px;margin-top:80px;align-items:start;}
-.booking-left p{font-size:18px;font-style:italic;color:var(--mid);line-height:1.7;margin-top:32px;margin-bottom:56px;max-width:360px;}
+.booking-left p{font-size:18px;font-style:italic;color:rgba(255,255,255,.5);line-height:1.7;margin-top:32px;margin-bottom:56px;max-width:360px;}
 .b-details{display:flex;flex-direction:column;gap:20px;}
-.b-detail{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);}
+.b-detail{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);}
 
 .bform{display:flex;flex-direction:column;}
-.bfield{border-bottom:1px solid var(--border);padding:28px 0 18px;}
-.bfield:first-child{border-top:1px solid var(--border);}
-.blabel{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:10px;}
+.bfield{border-bottom:1px solid rgba(255,255,255,.12);padding:28px 0 18px;}
+.bfield:first-child{border-top:1px solid rgba(255,255,255,.12);}
+.blabel{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:10px;}
 .brow{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.binput,.bselect,.btextarea{width:100%;background:transparent;border:none;font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;color:var(--black);outline:none;padding:4px 0;appearance:none;}
+.binput,.bselect,.btextarea{width:100%;background:transparent;border:none;font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;color:var(--white);outline:none;padding:4px 0;appearance:none;}
 .binput::placeholder,.btextarea::placeholder{color:#ccc;}
-.bselect option{background:var(--white);color:var(--black);}
+.bselect option{background:var(--black);color:var(--white);}
 .btextarea{resize:none;height:80px;}
 
 /* Submit states */
@@ -223,7 +226,7 @@ h2{font-family:'Unbounded',sans-serif;font-size:clamp(36px,5vw,72px);font-weight
 .bsuccess{display:none;padding:80px 0;}
 .bsuccess.show{display:block;}
 .bsuccess-big{font-family:'Unbounded',sans-serif;font-size:80px;font-weight:900;letter-spacing:-.05em;color:var(--accent);line-height:1;}
-.bsuccess-msg{font-size:20px;font-style:italic;color:var(--mid);margin-top:20px;}
+.bsuccess-msg{font-size:20px;font-style:italic;color:rgba(255,255,255,.5);margin-top:20px;}
 .bform.hidden{display:none;}
 
 /* Error toast */
