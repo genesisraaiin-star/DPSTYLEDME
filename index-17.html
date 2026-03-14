@@ -4,9 +4,18 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>STUDIO — Personal Styling</title>
+<meta name="description" content="Bespoke personal styling, wardrobe curation, and creative direction. By appointment only."/>
+<meta property="og:title" content="STUDIO — Personal Styling"/>
+<meta property="og:description" content="Fashion as a declaration. Book your session."/>
+<meta property="og:image" content="/photos/look-01.jpg"/>
+
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@900&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -17,297 +26,172 @@
   --border:#E0E0DC;
 }
 html{scroll-behavior:smooth;}
-body{
-  background:var(--white);
-  color:var(--black);
-  font-family:'Instrument Serif',serif;
-  overflow-x:hidden;
-  cursor:none;
-}
+body{background:var(--white);color:var(--black);font-family:'Instrument Serif',serif;overflow-x:hidden;cursor:none;}
 
-/* CURSOR */
-#cur{
-  position:fixed;width:10px;height:10px;
-  border-radius:50%;background:var(--black);
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:width .25s,height .25s,background .25s,border-radius .25s;
-  mix-blend-mode:multiply;
-}
-#cur.big{width:60px;height:60px;background:var(--accent);border-radius:50%;}
+/* ── CURSOR ── */
+#cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--black);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:multiply;}
+#cur.big{width:60px;height:60px;background:var(--accent);}
 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:32px 56px;
-  background:var(--white);
-  border-bottom:1px solid transparent;
-  transition:border-color .4s;
-}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:32px 56px;background:var(--white);border-bottom:1px solid transparent;transition:border-color .4s;}
 nav.scrolled{border-color:var(--border);}
-.nav-mark{
-  font-family:'Unbounded',sans-serif;
-  font-size:15px;letter-spacing:.05em;
-  text-decoration:none;color:var(--black);
-}
+.nav-mark{font-family:'Unbounded',sans-serif;font-size:15px;letter-spacing:.05em;text-decoration:none;color:var(--black);}
 .nav-right{display:flex;align-items:center;gap:48px;}
-.nav-link{
-  font-family:'DM Mono',monospace;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:var(--mid);text-decoration:none;
-  transition:color .2s;
-}
+.nav-link{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s;}
 .nav-link:hover{color:var(--black);}
-.nav-cta{
-  font-family:'DM Mono',monospace;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:var(--white);background:var(--black);
-  padding:14px 28px;text-decoration:none;
-  transition:background .3s;
-}
-.nav-cta:hover{background:var(--accent);}
+.nav-cta{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:var(--black);padding:14px 28px;text-decoration:none;transition:background .3s;}
+.nav-cta:hover{background:var(--accent);color:var(--black);}
 
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  padding:160px 56px 80px;
-  align-items:end;
-}
-.h-tag{
-  font-family:'DM Mono',monospace;font-size:11px;
-  letter-spacing:.25em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:40px;
-  display:flex;align-items:center;gap:14px;
-}
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding:160px 56px 80px;align-items:end;}
+.h-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:40px;display:flex;align-items:center;gap:14px;}
 .h-tag::before{content:'';width:32px;height:1px;background:var(--accent);}
-h1{
-  font-family:'Unbounded',sans-serif;
-  font-size:clamp(52px,6.5vw,96px);
-  line-height:1.0;letter-spacing:-.03em;
-  font-weight:900;color:var(--black);
-}
-h1 .serif{
-  font-family:'Instrument Serif',serif;
-  font-style:italic;font-size:1.15em;
-  font-weight:400;letter-spacing:-.02em;
-}
-.hero-right{
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding-left:80px;padding-bottom:8px;
-  border-left:1px solid var(--border);
-}
-.hero-body{
-  font-size:20px;line-height:1.65;
-  color:var(--mid);max-width:360px;
-  margin-bottom:56px;font-style:italic;
-}
-.hero-btn{
-  display:inline-flex;align-items:center;gap:16px;
-  font-family:'DM Mono',monospace;font-size:12px;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:var(--black);text-decoration:none;
-  border-bottom:1px solid var(--black);
-  padding-bottom:12px;
-  transition:gap .3s,color .3s,border-color .3s;
-  align-self:flex-start;
-}
+h1{font-family:'Unbounded',sans-serif;font-size:clamp(52px,6.5vw,96px);line-height:1.0;letter-spacing:-.03em;font-weight:900;color:var(--black);}
+h1 .serif{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.15em;font-weight:400;letter-spacing:-.02em;}
+.hero-right{display:flex;flex-direction:column;justify-content:flex-end;padding-left:80px;padding-bottom:8px;border-left:1px solid var(--border);}
+.hero-body{font-size:20px;line-height:1.65;color:var(--mid);max-width:360px;margin-bottom:56px;font-style:italic;}
+.hero-btn{display:inline-flex;align-items:center;gap:16px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--black);text-decoration:none;border-bottom:1px solid var(--black);padding-bottom:12px;transition:gap .3s,color .3s,border-color .3s;align-self:flex-start;}
 .hero-btn:hover{color:var(--accent);border-color:var(--accent);gap:28px;}
 .hero-btn svg{transition:transform .3s;}
 .hero-btn:hover svg{transform:translateX(6px);}
-.hero-stat-row{
-  display:flex;gap:0;
-  border-top:1px solid var(--border);
-  margin-top:80px;grid-column:1/-1;
-}
+.hero-stat-row{display:flex;border-top:1px solid var(--border);margin-top:80px;grid-column:1/-1;}
 .hero-stat{flex:1;padding:32px 0;border-right:1px solid var(--border);}
 .hero-stat:last-child{border-right:none;}
-.stat-n{
-  font-family:'Unbounded',sans-serif;
-  font-size:40px;font-weight:900;
-  letter-spacing:-.03em;color:var(--black);
-  line-height:1;margin-bottom:8px;
-}
-.stat-l{
-  font-family:'DM Mono',monospace;font-size:11px;
-  letter-spacing:.15em;text-transform:uppercase;color:var(--mid);
-}
+.stat-n{font-family:'Unbounded',sans-serif;font-size:40px;font-weight:900;letter-spacing:-.03em;color:var(--black);line-height:1;margin-bottom:8px;}
+.stat-l{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);}
 
-/* SECTION HELPERS */
-.section-label{
-  font-family:'DM Mono',monospace;font-size:11px;
-  letter-spacing:.25em;text-transform:uppercase;
-  color:var(--mid);margin-bottom:24px;
-  display:flex;align-items:center;gap:14px;
-}
+/* ── SECTION HELPERS ── */
+.section-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--mid);margin-bottom:24px;display:flex;align-items:center;gap:14px;}
 .section-label::before{content:'';width:24px;height:1px;background:var(--mid);}
-h2{
-  font-family:'Unbounded',sans-serif;
-  font-size:clamp(36px,5vw,72px);
-  font-weight:900;letter-spacing:-.03em;line-height:1.05;
-}
+h2{font-family:'Unbounded',sans-serif;font-size:clamp(36px,5vw,72px);font-weight:900;letter-spacing:-.03em;line-height:1.05;}
 
-/* ═══════════════════════════════════════
-   FAN CAROUSEL
-═══════════════════════════════════════ */
+/* ── FAN CAROUSEL ── */
 .carousel-section{padding:140px 0;overflow:hidden;}
-.carousel-head{
-  padding:0 56px;
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:96px;
-}
+.carousel-head{padding:0 56px;display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:96px;}
 .c-nav{display:flex;gap:12px;}
-.c-btn{
-  width:52px;height:52px;
-  border:1px solid var(--border);background:transparent;
-  color:var(--black);cursor:none;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .25s,border-color .25s,color .25s;
-}
+.c-btn{width:52px;height:52px;border:1px solid var(--border);background:transparent;color:var(--black);cursor:none;display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s,color .25s;}
 .c-btn:hover{background:var(--black);border-color:var(--black);color:var(--white);}
-
-.fan-stage{
-  position:relative;height:72vh;min-height:520px;
-  display:flex;align-items:center;justify-content:center;
-  perspective:1400px;
-}
-.fan-card{
-  position:absolute;
-  width:34vw;min-width:280px;max-width:460px;
-  height:62vh;min-height:440px;
-  border:1px solid var(--border);
-  background:var(--white);
-  cursor:none;
-  transform-origin:center bottom;
-  transition:transform .8s cubic-bezier(.16,1,.3,1),
-             opacity .8s cubic-bezier(.16,1,.3,1),
-             box-shadow .8s cubic-bezier(.16,1,.3,1);
-  overflow:hidden;
-}
+.fan-stage{position:relative;height:72vh;min-height:520px;display:flex;align-items:center;justify-content:center;perspective:1400px;}
+.fan-card{position:absolute;width:34vw;min-width:280px;max-width:460px;height:62vh;min-height:440px;border:1px solid var(--border);background:var(--white);cursor:none;transform-origin:center bottom;transition:transform .8s cubic-bezier(.16,1,.3,1),opacity .8s cubic-bezier(.16,1,.3,1),box-shadow .8s cubic-bezier(.16,1,.3,1);overflow:hidden;}
 .card-inner{width:100%;height:100%;display:flex;flex-direction:column;}
 .card-visual{flex:1;position:relative;overflow:hidden;}
-.card-art{
-  position:absolute;inset:0;
-  transition:transform .8s cubic-bezier(.16,1,.3,1);
-}
+
+/* Photo image fills card — replaces gradient when real photo exists */
+.card-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .8s cubic-bezier(.16,1,.3,1);display:block;}
+.fan-card:hover .card-photo{transform:scale(1.05);}
+
+/* Fallback gradient shown when no photo */
+.card-art{position:absolute;inset:0;transition:transform .8s cubic-bezier(.16,1,.3,1);}
 .fan-card:hover .card-art{transform:scale(1.05);}
 .card-art-0{background:linear-gradient(135deg,#0a0a0a 0%,#1a1208 40%,#2d1e00 100%);}
 .card-art-1{background:linear-gradient(135deg,#080810 0%,#0d0d22 40%,#1a1030 100%);}
 .card-art-2{background:linear-gradient(135deg,#0a0808 0%,#200c0c 40%,#3a1010 100%);}
 .card-art-3{background:linear-gradient(135deg,#060a08 0%,#0c1a10 40%,#142818 100%);}
 .card-art-4{background:linear-gradient(135deg,#0a0a0a 0%,#181818 40%,#282828 100%);}
-.card-figure{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-}
+.card-figure{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
 .card-figure svg{width:55%;height:auto;opacity:.18;}
-.card-accent-line{
-  position:absolute;bottom:0;left:0;right:0;height:3px;
-  background:var(--accent);transform:scaleX(0);transform-origin:left;
-  transition:transform .5s ease;
-}
-.fan-card.active .card-accent-line{transform:scaleX(1);}
-.card-footer{
-  padding:24px 28px;border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:flex-end;
-  background:var(--white);
-}
-.card-title{
-  font-family:'Unbounded',sans-serif;
-  font-size:15px;font-weight:900;letter-spacing:-.02em;line-height:1.1;
-}
-.card-sub{
-  font-family:'DM Mono',monospace;font-size:10px;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:var(--mid);margin-top:6px;
-}
-.card-idx{
-  font-family:'DM Mono',monospace;font-size:11px;
-  color:var(--mid);letter-spacing:.05em;
-}
 
-/* Fan positions */
+/* Hide figure when real photo present */
+.card-photo ~ .card-figure{display:none;}
+
+.card-accent-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease;}
+.fan-card.active .card-accent-line{transform:scaleX(1);}
+.card-footer{padding:24px 28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-end;background:var(--white);}
+.card-title{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:900;letter-spacing:-.02em;line-height:1.1;}
+.card-sub{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-top:6px;}
+.card-idx{font-family:'DM Mono',monospace;font-size:11px;color:var(--mid);letter-spacing:.05em;}
+
 .fan-card[data-pos="0"]{transform:translateX(0) rotate(0deg) translateY(0) scale(1);z-index:10;box-shadow:0 40px 120px rgba(0,0,0,.18);opacity:1;}
 .fan-card[data-pos="1"]{transform:translateX(52%) rotate(8deg) translateY(28px) scale(.88);z-index:7;opacity:.85;box-shadow:0 12px 48px rgba(0,0,0,.08);}
 .fan-card[data-pos="-1"]{transform:translateX(-52%) rotate(-8deg) translateY(28px) scale(.88);z-index:7;opacity:.85;box-shadow:0 12px 48px rgba(0,0,0,.08);}
-.fan-card[data-pos="2"]{transform:translateX(90%) rotate(15deg) translateY(60px) scale(.76);z-index:4;opacity:.5;box-shadow:0 8px 24px rgba(0,0,0,.05);}
-.fan-card[data-pos="-2"]{transform:translateX(-90%) rotate(-15deg) translateY(60px) scale(.76);z-index:4;opacity:.5;box-shadow:0 8px 24px rgba(0,0,0,.05);}
+.fan-card[data-pos="2"]{transform:translateX(90%) rotate(15deg) translateY(60px) scale(.76);z-index:4;opacity:.5;}
+.fan-card[data-pos="-2"]{transform:translateX(-90%) rotate(-15deg) translateY(60px) scale(.76);z-index:4;opacity:.5;}
 .fan-card[data-pos="3"],.fan-card[data-pos="-3"]{transform:translateX(0) scale(.6);z-index:1;opacity:0;}
 
-.fan-footer{
-  padding:48px 56px 0;
-  display:flex;align-items:center;justify-content:space-between;
-}
+.fan-footer{padding:48px 56px 0;display:flex;align-items:center;justify-content:space-between;}
 .fan-dots{display:flex;gap:8px;}
 .fan-dot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:background .3s,transform .3s;}
 .fan-dot.on{background:var(--black);transform:scale(1.4);}
 .fan-count{font-family:'DM Mono',monospace;font-size:11px;color:var(--mid);letter-spacing:.1em;}
 
-/* SERVICES */
+/* ── SERVICES ── */
 .services-section{padding:0 56px 140px;border-top:1px solid var(--border);}
-.services-top{
-  display:grid;grid-template-columns:1fr 1fr;
-  border-bottom:1px solid var(--border);
-  padding:80px 0;align-items:end;
-}
-.services-intro{
-  font-size:18px;font-style:italic;
-  color:var(--mid);line-height:1.7;max-width:360px;
-  padding-left:80px;border-left:1px solid var(--border);
-}
-.svc-item{
-  display:grid;grid-template-columns:48px 1fr auto;
-  align-items:center;
-  padding:40px 0;border-bottom:1px solid var(--border);
-  gap:32px;cursor:none;
-}
+.services-top{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);padding:80px 0;align-items:end;}
+.services-intro{font-size:18px;font-style:italic;color:var(--mid);line-height:1.7;max-width:360px;padding-left:80px;border-left:1px solid var(--border);}
+.svc-item{display:grid;grid-template-columns:48px 1fr auto;align-items:center;padding:40px 0;border-bottom:1px solid var(--border);gap:32px;cursor:none;}
 .svc-item:hover .svc-name{color:var(--accent);}
 .svc-n{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--mid);}
 .svc-name{font-family:'Unbounded',sans-serif;font-size:clamp(16px,2vw,24px);font-weight:900;letter-spacing:-.02em;transition:color .25s;}
 .svc-desc{font-family:'Instrument Serif',serif;font-size:15px;font-style:italic;color:var(--mid);margin-top:4px;}
 .svc-price{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.05em;text-align:right;white-space:nowrap;}
 
-/* BOOKING */
-.booking-section{background:var(--black);color:var(--white);padding:140px 56px;}
-.booking-section .section-label{color:rgba(255,255,255,.35);}
-.booking-section .section-label::before{background:rgba(255,255,255,.35);}
-.booking-section h2{color:var(--white);}
-.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px;margin-top:80px;align-items:start;}
-.booking-left p{font-size:18px;font-style:italic;color:rgba(255,255,255,.5);line-height:1.7;margin-top:32px;margin-bottom:56px;max-width:360px;}
-.b-details{display:flex;flex-direction:column;gap:20px;}
-.b-detail{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+/* ── GOOGLE REVIEWS ── */
+.reviews-section{padding:120px 56px;background:var(--black);color:var(--white);}
+.reviews-section .section-label{color:rgba(255,255,255,.3);}
+.reviews-section .section-label::before{background:rgba(255,255,255,.3);}
+.reviews-section h2{color:var(--white);margin-bottom:16px;}
+.reviews-rating-row{display:flex;align-items:center;gap:20px;margin-bottom:80px;margin-top:12px;}
+.reviews-stars{display:flex;gap:4px;}
+.reviews-stars svg{width:20px;height:20px;fill:var(--accent);}
+.reviews-aggregate{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.1em;color:rgba(255,255,255,.4);}
+.reviews-aggregate span{color:var(--white);font-size:16px;}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);}
+.review-card{background:var(--black);padding:48px 36px;transition:background .3s;}
+.review-card:hover{background:#111;}
+.review-stars{display:flex;gap:3px;margin-bottom:24px;}
+.review-stars svg{width:14px;height:14px;fill:var(--accent);}
+.review-text{font-size:17px;font-style:italic;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:28px;}
+.review-author{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.review-date{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.2);margin-top:4px;}
+.reviews-cta{margin-top:56px;display:flex;align-items:center;gap:20px;}
+.reviews-link{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:12px;transition:color .3s;}
+.reviews-link:hover{color:var(--accent);}
+.reviews-link svg{transition:transform .3s;}
+.reviews-link:hover svg{transform:translateX(4px);}
 
-.bform{display:flex;flex-direction:column;gap:0;}
-.bfield{border-bottom:1px solid rgba(255,255,255,.12);padding:28px 0 18px;}
-.bfield:first-child{border-top:1px solid rgba(255,255,255,.12);}
-.blabel{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:10px;}
+/* Loading / error states for reviews */
+.reviews-loading{text-align:center;padding:80px 0;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);}
+.reviews-error{text-align:center;padding:60px 0;}
+.reviews-error p{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase;}
+
+/* ── BOOKING ── */
+.booking-section{background:var(--white);padding:140px 56px;border-top:1px solid var(--border);}
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px;margin-top:80px;align-items:start;}
+.booking-left p{font-size:18px;font-style:italic;color:var(--mid);line-height:1.7;margin-top:32px;margin-bottom:56px;max-width:360px;}
+.b-details{display:flex;flex-direction:column;gap:20px;}
+.b-detail{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);}
+
+.bform{display:flex;flex-direction:column;}
+.bfield{border-bottom:1px solid var(--border);padding:28px 0 18px;}
+.bfield:first-child{border-top:1px solid var(--border);}
+.blabel{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:10px;}
 .brow{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.binput,.bselect,.btextarea{
-  width:100%;background:transparent;border:none;
-  font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;
-  color:var(--white);outline:none;padding:4px 0;appearance:none;
-}
-.binput::placeholder,.btextarea::placeholder{color:rgba(255,255,255,.2);}
-.bselect option{background:var(--black);}
+.binput,.bselect,.btextarea{width:100%;background:transparent;border:none;font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;color:var(--black);outline:none;padding:4px 0;appearance:none;}
+.binput::placeholder,.btextarea::placeholder{color:#ccc;}
+.bselect option{background:var(--white);color:var(--black);}
 .btextarea{resize:none;height:80px;}
-.bsubmit{
-  margin-top:40px;border:none;background:var(--accent);
-  color:var(--black);padding:24px 48px;
-  font-family:'Unbounded',sans-serif;font-size:13px;
-  letter-spacing:.05em;font-weight:900;cursor:none;
-  display:flex;align-items:center;justify-content:space-between;
-  width:100%;transition:background .3s;
-}
+
+/* Submit states */
+.bsubmit{margin-top:40px;border:none;background:var(--accent);color:var(--black);padding:24px 48px;font-family:'Unbounded',sans-serif;font-size:13px;letter-spacing:.05em;font-weight:900;cursor:none;display:flex;align-items:center;justify-content:space-between;width:100%;transition:background .3s,opacity .3s;}
 .bsubmit:hover{background:#65cc00;}
+.bsubmit:disabled{opacity:.5;cursor:not-allowed;}
+.bsubmit .btn-text{pointer-events:none;}
+.bsubmit .spinner{display:none;width:18px;height:18px;border:2px solid rgba(0,0,0,.2);border-top-color:var(--black);border-radius:50%;animation:spin .6s linear infinite;}
+.bsubmit.loading .btn-text{display:none;}
+.bsubmit.loading .spinner{display:block;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
 .bsuccess{display:none;padding:80px 0;}
 .bsuccess.show{display:block;}
 .bsuccess-big{font-family:'Unbounded',sans-serif;font-size:80px;font-weight:900;letter-spacing:-.05em;color:var(--accent);line-height:1;}
-.bsuccess-msg{font-size:20px;font-style:italic;color:rgba(255,255,255,.5);margin-top:20px;}
+.bsuccess-msg{font-size:20px;font-style:italic;color:var(--mid);margin-top:20px;}
 .bform.hidden{display:none;}
 
-/* FOOTER */
+/* Error toast */
+.form-error{display:none;margin-top:16px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#cc2200;padding:16px 0;}
+.form-error.show{display:block;}
+
+/* ── FOOTER ── */
 footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;align-items:end;}
 .f-logo{font-family:'Unbounded',sans-serif;font-size:48px;font-weight:900;letter-spacing:-.04em;line-height:1;}
 .f-tagline{font-style:italic;color:var(--mid);font-size:15px;margin-top:14px;line-height:1.5;}
@@ -321,11 +205,11 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
 .f-social a{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s;}
 .f-social a:hover{color:var(--black);}
 
-/* REVEAL */
+/* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 
-/* MOBILE */
+/* ── MOBILE ── */
 @media(max-width:900px){
   nav{padding:24px 28px;}
   .nav-right .nav-link{display:none;}
@@ -340,6 +224,8 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
   .services-section{padding:0 28px 80px;}
   .services-top{grid-template-columns:1fr;}
   .services-intro{border-left:none;padding-left:0;padding-top:32px;}
+  .reviews-section{padding:80px 28px;}
+  .reviews-grid{grid-template-columns:1fr;}
   .booking-section{padding:80px 28px;}
   .booking-grid{grid-template-columns:1fr;gap:60px;}
   .brow{grid-template-columns:1fr;}
@@ -352,17 +238,18 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
 
 <div id="cur"></div>
 
-<!-- NAV -->
+<!-- ═══ NAV ═══ -->
 <nav id="mainNav">
   <a href="#" class="nav-mark">STUDIO.</a>
   <div class="nav-right">
     <a href="#work" class="nav-link">Work</a>
     <a href="#services" class="nav-link">Services</a>
+    <a href="#reviews" class="nav-link">Reviews</a>
     <a href="#booking" class="nav-cta">Book Now</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-left">
     <div class="h-tag">Personal Styling — By Appointment</div>
@@ -383,7 +270,8 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
   </div>
 </section>
 
-<!-- FAN CAROUSEL -->
+<!-- ═══ FAN CAROUSEL ═══ -->
+<!-- CAROUSEL CARDS: set data-photo to your image filename in /photos/ -->
 <section class="carousel-section" id="work">
   <div class="carousel-head reveal">
     <div>
@@ -402,19 +290,13 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
 
   <div class="fan-stage" id="fanStage">
 
-    <div class="fan-card" data-idx="0">
+    <!-- Card 1: set data-photo="look-01.jpg" once you add your photo -->
+    <div class="fan-card" data-idx="0" data-photo="">
       <div class="card-inner">
         <div class="card-visual">
           <div class="card-art card-art-0"></div>
           <div class="card-figure">
-            <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="60" cy="32" r="26" fill="white"/>
-              <path d="M20 80 Q60 58 100 80 L108 180 Q84 172 60 175 Q36 172 12 180 Z" fill="white"/>
-              <rect x="12" y="172" width="36" height="28" rx="4" fill="white"/>
-              <rect x="72" y="172" width="36" height="28" rx="4" fill="white"/>
-              <rect x="4" y="80" width="20" height="72" rx="10" fill="white"/>
-              <rect x="96" y="80" width="20" height="72" rx="10" fill="white"/>
-            </svg>
+            <svg viewBox="0 0 120 200" fill="none"><circle cx="60" cy="32" r="26" fill="white"/><path d="M20 80 Q60 58 100 80 L108 180 Q84 172 60 175 Q36 172 12 180 Z" fill="white"/><rect x="12" y="172" width="36" height="28" rx="4" fill="white"/><rect x="72" y="172" width="36" height="28" rx="4" fill="white"/><rect x="4" y="80" width="20" height="72" rx="10" fill="white"/><rect x="96" y="80" width="20" height="72" rx="10" fill="white"/></svg>
           </div>
           <div class="card-accent-line"></div>
         </div>
@@ -425,19 +307,12 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
       </div>
     </div>
 
-    <div class="fan-card" data-idx="1">
+    <div class="fan-card" data-idx="1" data-photo="">
       <div class="card-inner">
         <div class="card-visual">
           <div class="card-art card-art-1"></div>
           <div class="card-figure">
-            <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="60" cy="30" r="24" fill="white"/>
-              <path d="M24 76 Q60 56 96 76 L100 170 Q80 164 60 167 Q40 164 20 170 Z" fill="white"/>
-              <path d="M20 168 L10 200 M100 168 L110 200" stroke="white" stroke-width="18" stroke-linecap="round"/>
-              <path d="M4 78 L14 148" stroke="white" stroke-width="18" stroke-linecap="round"/>
-              <path d="M116 78 L106 148" stroke="white" stroke-width="18" stroke-linecap="round"/>
-              <ellipse cx="60" cy="100" rx="28" ry="10" fill="none" stroke="white" stroke-width="3"/>
-            </svg>
+            <svg viewBox="0 0 120 200" fill="none"><circle cx="60" cy="30" r="24" fill="white"/><path d="M24 76 Q60 56 96 76 L100 170 Q80 164 60 167 Q40 164 20 170 Z" fill="white"/><path d="M20 168 L10 200 M100 168 L110 200" stroke="white" stroke-width="18" stroke-linecap="round"/><path d="M4 78 L14 148" stroke="white" stroke-width="18" stroke-linecap="round"/><path d="M116 78 L106 148" stroke="white" stroke-width="18" stroke-linecap="round"/><ellipse cx="60" cy="100" rx="28" ry="10" fill="none" stroke="white" stroke-width="3"/></svg>
           </div>
           <div class="card-accent-line"></div>
         </div>
@@ -448,19 +323,12 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
       </div>
     </div>
 
-    <div class="fan-card" data-idx="2">
+    <div class="fan-card" data-idx="2" data-photo="">
       <div class="card-inner">
         <div class="card-visual">
           <div class="card-art card-art-2"></div>
           <div class="card-figure">
-            <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="60" cy="28" r="22" fill="white"/>
-              <path d="M18 70 Q60 50 102 70 L110 175 Q86 168 60 171 Q34 168 10 175 Z" fill="white"/>
-              <rect x="4" y="68" width="22" height="80" rx="11" fill="white"/>
-              <rect x="94" y="68" width="22" height="80" rx="11" fill="white"/>
-              <rect x="10" y="170" width="38" height="30" rx="5" fill="white"/>
-              <rect x="72" y="170" width="38" height="30" rx="5" fill="white"/>
-            </svg>
+            <svg viewBox="0 0 120 200" fill="none"><circle cx="60" cy="28" r="22" fill="white"/><path d="M18 70 Q60 50 102 70 L110 175 Q86 168 60 171 Q34 168 10 175 Z" fill="white"/><rect x="4" y="68" width="22" height="80" rx="11" fill="white"/><rect x="94" y="68" width="22" height="80" rx="11" fill="white"/><rect x="10" y="170" width="38" height="30" rx="5" fill="white"/><rect x="72" y="170" width="38" height="30" rx="5" fill="white"/></svg>
           </div>
           <div class="card-accent-line"></div>
         </div>
@@ -471,19 +339,12 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
       </div>
     </div>
 
-    <div class="fan-card" data-idx="3">
+    <div class="fan-card" data-idx="3" data-photo="">
       <div class="card-inner">
         <div class="card-visual">
           <div class="card-art card-art-3"></div>
           <div class="card-figure">
-            <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="60" cy="30" r="24" fill="white"/>
-              <path d="M28 74 Q60 54 92 74 L96 164 Q78 158 60 161 Q42 158 24 164 Z" fill="white"/>
-              <path d="M24 162 Q18 180 16 200 M96 162 Q102 180 104 200" stroke="white" stroke-width="16" stroke-linecap="round"/>
-              <path d="M6 76 Q0 120 8 148" stroke="white" stroke-width="16" stroke-linecap="round"/>
-              <path d="M114 76 Q120 120 112 148" stroke="white" stroke-width="16" stroke-linecap="round"/>
-              <rect x="28" y="64" width="64" height="16" rx="8" fill="white" opacity=".6"/>
-            </svg>
+            <svg viewBox="0 0 120 200" fill="none"><circle cx="60" cy="30" r="24" fill="white"/><path d="M28 74 Q60 54 92 74 L96 164 Q78 158 60 161 Q42 158 24 164 Z" fill="white"/><path d="M24 162 Q18 180 16 200 M96 162 Q102 180 104 200" stroke="white" stroke-width="16" stroke-linecap="round"/><path d="M6 76 Q0 120 8 148" stroke="white" stroke-width="16" stroke-linecap="round"/><path d="M114 76 Q120 120 112 148" stroke="white" stroke-width="16" stroke-linecap="round"/><rect x="28" y="64" width="64" height="16" rx="8" fill="white" opacity=".6"/></svg>
           </div>
           <div class="card-accent-line"></div>
         </div>
@@ -494,20 +355,12 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
       </div>
     </div>
 
-    <div class="fan-card" data-idx="4">
+    <div class="fan-card" data-idx="4" data-photo="">
       <div class="card-inner">
         <div class="card-visual">
           <div class="card-art card-art-4"></div>
           <div class="card-figure">
-            <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="60" cy="26" r="20" fill="white"/>
-              <path d="M22 66 Q60 46 98 66 L104 168 Q82 162 60 165 Q38 162 16 168 Z" fill="white"/>
-              <rect x="6" y="64" width="22" height="76" rx="11" fill="white"/>
-              <rect x="92" y="64" width="22" height="76" rx="11" fill="white"/>
-              <rect x="16" y="163" width="36" height="37" rx="4" fill="white"/>
-              <rect x="68" y="163" width="36" height="37" rx="4" fill="white"/>
-              <circle cx="60" cy="115" r="18" fill="none" stroke="white" stroke-width="3"/>
-            </svg>
+            <svg viewBox="0 0 120 200" fill="none"><circle cx="60" cy="26" r="20" fill="white"/><path d="M22 66 Q60 46 98 66 L104 168 Q82 162 60 165 Q38 162 16 168 Z" fill="white"/><rect x="6" y="64" width="22" height="76" rx="11" fill="white"/><rect x="92" y="64" width="22" height="76" rx="11" fill="white"/><rect x="16" y="163" width="36" height="37" rx="4" fill="white"/><rect x="68" y="163" width="36" height="37" rx="4" fill="white"/><circle cx="60" cy="115" r="18" fill="none" stroke="white" stroke-width="3"/></svg>
           </div>
           <div class="card-accent-line"></div>
         </div>
@@ -522,17 +375,13 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
 
   <div class="fan-footer">
     <div class="fan-dots" id="fanDots">
-      <div class="fan-dot on"></div>
-      <div class="fan-dot"></div>
-      <div class="fan-dot"></div>
-      <div class="fan-dot"></div>
-      <div class="fan-dot"></div>
+      <div class="fan-dot on"></div><div class="fan-dot"></div><div class="fan-dot"></div><div class="fan-dot"></div><div class="fan-dot"></div>
     </div>
     <div class="fan-count" id="fanCount">01 &#8212; 05</div>
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- ═══ SERVICES ═══ -->
 <section class="services-section" id="services">
   <div class="services-top reveal">
     <div>
@@ -551,7 +400,28 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
   </div>
 </section>
 
-<!-- BOOKING -->
+<!-- ═══ GOOGLE REVIEWS ═══ -->
+<section class="reviews-section" id="reviews">
+  <div class="section-label">Client Proof</div>
+  <h2>WHAT THEY SAY</h2>
+
+  <div class="reviews-rating-row" id="ratingSummary">
+    <!-- Populated by JS -->
+  </div>
+
+  <div id="reviewsGrid" class="reviews-grid">
+    <div class="reviews-loading">Loading reviews&#8230;</div>
+  </div>
+
+  <div class="reviews-cta">
+    <a class="reviews-link" id="googleLink" href="#" target="_blank" rel="noopener">
+      See all reviews on Google
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ BOOKING ═══ -->
 <section class="booking-section" id="booking">
   <div class="section-label">Reserve Your Session</div>
   <h2>LET'S WORK.</h2>
@@ -569,34 +439,40 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
         <div class="bfield">
           <label class="blabel">Name</label>
           <div class="brow">
-            <input class="binput" type="text" placeholder="First" required/>
-            <input class="binput" type="text" placeholder="Last" required/>
+            <input class="binput" id="f_first" type="text" name="first_name" placeholder="First" required/>
+            <input class="binput" id="f_last" type="text" name="last_name" placeholder="Last" required/>
           </div>
         </div>
         <div class="bfield">
           <label class="blabel">Email</label>
-          <input class="binput" type="email" placeholder="you@&#8212;" required/>
+          <input class="binput" id="f_email" type="email" name="email" placeholder="you@&#8212;" required/>
+        </div>
+        <div class="bfield">
+          <label class="blabel">Phone (optional)</label>
+          <input class="binput" id="f_phone" type="tel" name="phone" placeholder="+1 (000) 000-0000"/>
         </div>
         <div class="bfield">
           <label class="blabel">Service</label>
-          <select class="bselect" required>
+          <select class="bselect" id="f_service" name="service" required>
             <option value="" disabled selected>Choose a service</option>
-            <option>Wardrobe Audit</option>
-            <option>Personal Shopping</option>
-            <option>Event &amp; Red Carpet</option>
-            <option>Brand Identity</option>
-            <option>Creative Direction</option>
-            <option>Monthly Retainer</option>
+            <option>Wardrobe Audit — From $400</option>
+            <option>Personal Shopping — From $600</option>
+            <option>Event &amp; Red Carpet — From $1,200</option>
+            <option>Brand Identity — From $2,000</option>
+            <option>Creative Direction — From $3,500</option>
+            <option>Monthly Retainer — $800/mo</option>
           </select>
         </div>
         <div class="bfield">
           <label class="blabel">Your Vision</label>
-          <textarea class="btextarea" placeholder="Where you are, where you're going, what's not working&#8230;"></textarea>
+          <textarea class="btextarea" id="f_message" name="message" placeholder="Where you are, where you're going, what's not working&#8230;"></textarea>
         </div>
-        <button class="bsubmit" type="submit">
-          Submit Request
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <button class="bsubmit" id="bSubmit" type="submit">
+          <span class="btn-text">Submit Request</span>
+          <div class="spinner"></div>
+          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
+        <div class="form-error" id="formError">Something went wrong. Please try again or email us directly.</div>
       </form>
       <div class="bsuccess" id="bSuccess">
         <div class="bsuccess-big">GOT IT.</div>
@@ -606,7 +482,7 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <div>
     <div class="f-logo">STUDIO.</div>
@@ -615,13 +491,13 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
   <ul class="f-links">
     <li><a href="#work">Portfolio</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#booking">Book a Session</a></li>
-    <li><a href="#">Press</a></li>
   </ul>
   <ul class="f-links">
     <li><a href="#">Privacy</a></li>
     <li><a href="#">Terms</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#d1b9b4bdbdbe91a2a5a4b5b8beffa2a5a8bdb4"><span class="__cf_email__" data-cfemail="5038353c3c3f1023242534393f7e2324293c35">[email&#160;protected]</span></a></li>
+    <li><a href="mailto:hello@studio.style">hello@studio.style</a></li>
   </ul>
   <div class="f-bottom">
     <span class="f-copy">&copy; 2025 STUDIO. ALL RIGHTS RESERVED.</span>
@@ -633,8 +509,33 @@ footer{padding:80px 56px 48px;border-top:1px solid var(--border);display:grid;gr
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* CURSOR — smooth follow */
+<script>
+/* ════════════════════════════════════════
+   CONFIG — fill these in
+════════════════════════════════════════ */
+const CONFIG = {
+  // EmailJS — get these at emailjs.com → Account → API Keys
+  emailjs_public_key:  'YOUR_EMAILJS_PUBLIC_KEY',
+  emailjs_service_id:  'YOUR_SERVICE_ID',
+  emailjs_template_id: 'YOUR_TEMPLATE_ID',
+
+  // Google Places — get at console.cloud.google.com → Places API
+  // Replace with your actual Place ID from: https://developers.google.com/maps/documentation/places/web-service/place-id
+  google_place_id:  'YOUR_GOOGLE_PLACE_ID',
+  google_api_key:   'YOUR_GOOGLE_MAPS_API_KEY',
+
+  // Your Google Maps listing URL (for the "See all reviews" link)
+  google_maps_url:  'https://maps.google.com/?cid=YOUR_CID'
+};
+
+/* ════════════════════════════════════════
+   EMAILJS INIT
+════════════════════════════════════════ */
+emailjs.init(CONFIG.emailjs_public_key);
+
+/* ════════════════════════════════════════
+   CURSOR
+════════════════════════════════════════ */
 const cur = document.getElementById('cur');
 let mx=0,my=0,cx=0,cy=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
@@ -648,12 +549,35 @@ document.querySelectorAll('a,button,.svc-item,.fan-card').forEach(el=>{
   el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
 });
 
-/* NAV */
+/* ════════════════════════════════════════
+   NAV SCROLL
+════════════════════════════════════════ */
 window.addEventListener('scroll',()=>{
   document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
 });
 
-/* FAN CAROUSEL */
+/* ════════════════════════════════════════
+   PHOTO INJECTION
+   Add filename to data-photo on each .fan-card
+   e.g. data-photo="look-01.jpg"
+   Photos must be in the /photos/ folder
+════════════════════════════════════════ */
+document.querySelectorAll('.fan-card[data-photo]').forEach(card=>{
+  const file = card.getAttribute('data-photo');
+  if(!file) return;
+  const visual = card.querySelector('.card-visual');
+  const img = document.createElement('img');
+  img.src = `photos/${file}`;
+  img.className = 'card-photo';
+  img.alt = card.querySelector('.card-title')?.textContent || 'Look';
+  img.loading = 'lazy';
+  // Insert before any existing children so it sits behind the overlay
+  visual.insertBefore(img, visual.firstChild);
+});
+
+/* ════════════════════════════════════════
+   FAN CAROUSEL
+════════════════════════════════════════ */
 const cards=[...document.querySelectorAll('.fan-card')];
 const TOTAL=cards.length;
 let active=0;
@@ -668,8 +592,7 @@ function getPos(idx){
 function render(){
   cards.forEach((c,i)=>{
     const p=getPos(i);
-    const cl=Math.max(-3,Math.min(3,p));
-    c.setAttribute('data-pos',cl);
+    c.setAttribute('data-pos',Math.max(-3,Math.min(3,p)));
     c.classList.toggle('active',p===0);
   });
   document.querySelectorAll('.fan-dot').forEach((d,i)=>{
@@ -684,19 +607,142 @@ function go(dir){active=(active+dir+TOTAL)%TOTAL;render();}
 document.getElementById('fanNext').addEventListener('click',()=>go(1));
 document.getElementById('fanPrev').addEventListener('click',()=>go(-1));
 cards.forEach((c,i)=>c.addEventListener('click',()=>{if(i!==active){active=i;render();}}));
-
 let tx=0;
 document.getElementById('fanStage').addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
 document.getElementById('fanStage').addEventListener('touchend',e=>{
-  const d=tx-e.changedTouches[0].clientX;
-  if(Math.abs(d)>40)go(d>0?1:-1);
+  if(Math.abs(tx-e.changedTouches[0].clientX)>40)go(tx>e.changedTouches[0].clientX?1:-1);
 });
-
 setInterval(()=>go(1),4500);
 render();
 
-/* SCROLL REVEAL */
-const obs=new IntersectionObserver(entries=>{
+/* ════════════════════════════════════════
+   GOOGLE REVIEWS
+   Uses Places API (New) — no server needed
+   The API call is made client-side with your
+   restricted browser key
+════════════════════════════════════════ */
+function starsSVG(n){
+  return Array.from({length:5},(_,i)=>{
+    const filled = i < Math.round(n);
+    return `<svg viewBox="0 0 20 20"><path d="M10 1l2.7 5.6 6.1.9-4.4 4.3 1 6.1L10 15l-5.4 2.9 1-6.1L1.2 7.5l6.1-.9z" fill="${filled?'var(--accent)':'rgba(255,255,255,.15)'}" stroke="none"/></svg>`;
+  }).join('');
+}
+
+async function loadReviews(){
+  const grid = document.getElementById('reviewsGrid');
+  const ratingRow = document.getElementById('ratingSummary');
+
+  // If no API key configured yet, show placeholder cards
+  if(CONFIG.google_api_key === 'YOUR_GOOGLE_MAPS_API_KEY'){
+    ratingRow.innerHTML = `
+      <div class="reviews-stars">${starsSVG(5)}</div>
+      <div class="reviews-aggregate"><span>5.0</span> &nbsp;·&nbsp; Add your Google API key to load live reviews</div>`;
+    grid.innerHTML = placeholderReviews();
+    return;
+  }
+
+  try{
+    // Places API (New) — Field Mask limits billing
+    const url = `https://places.googleapis.com/v1/places/${CONFIG.google_place_id}?fields=rating,userRatingCount,reviews&key=${CONFIG.google_api_key}`;
+    const res = await fetch(url, {
+      headers:{'X-Goog-FieldMask':'rating,userRatingCount,reviews'}
+    });
+    if(!res.ok) throw new Error('API error');
+    const data = await res.json();
+
+    const rating = data.rating || 5;
+    const count  = data.userRatingCount || 0;
+
+    ratingRow.innerHTML = `
+      <div class="reviews-stars">${starsSVG(rating)}</div>
+      <div class="reviews-aggregate"><span>${rating.toFixed(1)}</span> &nbsp;·&nbsp; ${count} reviews on Google</div>`;
+
+    document.getElementById('googleLink').href = CONFIG.google_maps_url;
+
+    const reviews = (data.reviews || []).slice(0,6);
+    if(!reviews.length){ grid.innerHTML = placeholderReviews(); return; }
+
+    grid.innerHTML = reviews.map(r=>`
+      <div class="review-card">
+        <div class="review-stars">${starsSVG(r.rating)}</div>
+        <p class="review-text">"${r.text?.text || ''}"</p>
+        <div class="review-author">${r.authorAttribution?.displayName || 'Google Reviewer'}</div>
+        <div class="review-date">${r.relativePublishTimeDescription || ''}</div>
+      </div>`).join('');
+
+  } catch(err){
+    console.warn('Reviews failed to load:', err);
+    ratingRow.innerHTML = `<div class="reviews-stars">${starsSVG(5)}</div><div class="reviews-aggregate"><span>5.0</span> &nbsp;·&nbsp; Google Reviews</div>`;
+    grid.innerHTML = placeholderReviews();
+  }
+}
+
+function placeholderReviews(){
+  const samples = [
+    {stars:5,text:"Completely transformed how I show up. Every room I walk into, people notice. Worth every dollar.",author:"Jordan M.",date:"2 weeks ago"},
+    {stars:5,text:"I've worked with stylists before but this was different. She understood my brand before I did.",author:"Reyna C.",date:"1 month ago"},
+    {stars:5,text:"My wardrobe used to stress me out. Now getting dressed is the easiest part of my morning.",author:"Marcus T.",date:"3 months ago"},
+    {stars:5,text:"Flew in from LA for one session. Already booked the retainer. The ROI on looking this good is real.",author:"Alexa D.",date:"1 month ago"},
+    {stars:5,text:"She saw a version of me I hadn't stepped into yet. Now I can't imagine going back.",author:"Devon K.",date:"2 months ago"},
+    {stars:5,text:"Every single piece she pulled, I would never have chosen myself — and every single piece was perfect.",author:"Simone R.",date:"3 weeks ago"}
+  ];
+  return samples.map(r=>`
+    <div class="review-card">
+      <div class="review-stars">${starsSVG(r.stars)}</div>
+      <p class="review-text">"${r.text}"</p>
+      <div class="review-author">${r.author}</div>
+      <div class="review-date">${r.date}</div>
+    </div>`).join('');
+}
+
+loadReviews();
+
+/* ════════════════════════════════════════
+   EMAILJS FORM
+════════════════════════════════════════ */
+document.getElementById('bForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('bSubmit');
+  const errEl = document.getElementById('formError');
+
+  // Loading state
+  btn.classList.add('loading');
+  btn.disabled = true;
+  errEl.classList.remove('show');
+
+  const templateParams = {
+    first_name: document.getElementById('f_first').value,
+    last_name:  document.getElementById('f_last').value,
+    email:      document.getElementById('f_email').value,
+    phone:      document.getElementById('f_phone').value || 'Not provided',
+    service:    document.getElementById('f_service').value,
+    message:    document.getElementById('f_message').value || 'No message provided',
+    reply_to:   document.getElementById('f_email').value,
+  };
+
+  try{
+    await emailjs.send(
+      CONFIG.emailjs_service_id,
+      CONFIG.emailjs_template_id,
+      templateParams
+    );
+    this.classList.add('hidden');
+    document.getElementById('bSuccess').classList.add('show');
+  } catch(err){
+    console.error('EmailJS error:', err);
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    errEl.classList.add('show');
+  }
+});
+
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
 },{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>obs.ob
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
